@@ -98,7 +98,9 @@ public class JSONService {
 				msg.setLastLogin(getDateString());
 				NewCookie cookie = new NewCookie("last_access_t",
 						msg.getLastLogin());
-				msg.setMessage("User" + userData.getUserId() + " Authenticated");
+				System.out.println("User" + userData.getUserId()
+						+ "authenticated");
+				msg.setMessage("User Authenticated");
 				return Response.status(200).entity(msg).cookie(cookie).build();
 			}
 

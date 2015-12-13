@@ -9,6 +9,7 @@ public class CORSFilter implements ContainerResponseFilter {
     public ContainerResponse filter(ContainerRequest request,
             ContainerResponse response) {
 
+//        response.getHttpHeaders().add("Access-Control-Allow-Origin", "http://localhost:4000");
         response.getHttpHeaders().add("Access-Control-Allow-Origin", "*");
         response.getHttpHeaders().add("Access-Control-Allow-Headers",
                 "origin, content-type, accept, authorization");

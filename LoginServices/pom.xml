@@ -40,7 +40,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>Login Services</finalName>
+		<finalName>LoginServices</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
