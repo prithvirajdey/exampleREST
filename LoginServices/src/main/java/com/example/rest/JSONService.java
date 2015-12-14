@@ -17,6 +17,13 @@ import javax.ws.rs.core.Response;
 @Path("/services")
 public class JSONService {
 
+	/**
+	 * @param msg
+	 *            Test GET service used to check if server is alive Can be
+	 *            tested by URL:
+	 *            host:port/LoginServices/rest/services/echo/{param}
+	 * @return Response
+	 */
 	@GET
 	@Path("/echo/{param}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -27,6 +34,15 @@ public class JSONService {
 	}
 
 	// Service to Register new Users
+	/**
+	 * @param userData
+	 *            POST Service used to register a new user. Request body can
+	 *            contain JSON in the form of :
+	 *            {"userId":"admin","password":"admin"}
+	 *            tested by URL:
+	 *            host:port/LoginServices/rest/services/register
+	 * @return Response
+	 */
 	@POST
 	@Path("/register")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -53,7 +69,7 @@ public class JSONService {
 
 		if (UserMaintain.usersMap.containsKey(userData.getUserId())) {
 			System.out.println("User exists");
-			msg.setMessage("User" + userData.getUserId() + "Already Exists");
+			msg.setMessage("User " + userData.getUserId() + " Already Exists");
 			return Response.status(200).entity(msg).build();
 		}
 		try {
@@ -72,6 +88,16 @@ public class JSONService {
 	}
 
 	// Service to authenticate Users
+	/**
+	 * @param userData
+	 *            POST Service used to authenticate an existing user. Request
+	 *            body can contain JSON in the form of :
+	 *            {"userId":"admin","password":"admin"} Sets cookie
+	 *            last_access_t in Response
+	 *            tested by URL:
+	 *            host:port/LoginServices/rest/services/auth
+	 * @return Response
+	 */
 	@POST
 	@Path("/auth")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -85,9 +111,9 @@ public class JSONService {
 		}
 
 		if (!UserMaintain.usersMap.containsKey(userData.getUserId())) {
-			System.out.println("User" + userData.getUserId()
+			System.out.println("User " + userData.getUserId()
 					+ " does not exist");
-			msg.setMessage("User" + userData.getUserId() + " Does not Exist");
+			msg.setMessage("User " + userData.getUserId() + " Does not Exist");
 			return Response.status(200).entity(msg).build();
 		} else {
 			if (userData.getPassword().equals(
